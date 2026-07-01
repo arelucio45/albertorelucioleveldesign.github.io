@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gothic 1 Remake — Level Design Breakdown · Alberto Relucio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Alberto Relucio</a>
+    <a href="index.html" class="nav-back">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6H2M6 10L2 6l4-4"/></svg>
+      Back to portfolio
+    </a>
+  </nav>
+
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-grid"></div>
+    <canvas id="gothic-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+    <div class="page-header-fade"></div>
+    <div class="page-header-content">
+      <div class="breadcrumb">
+        <a href="index.html">Portfolio</a>
+        <span class="breadcrumb-sep">/</span>
+        Gothic 1 Remake
+      </div>
+      <h1 class="t-page-title mb-5">Gothic 1<br><em>Remake</em></h1>
+      <div class="page-meta">
+        <div class="meta-item"><span class="meta-label">Studio</span><span class="meta-value">Alkimia Interactive</span></div>
+        <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Senior Level Designer</span></div>
+        <div class="meta-item"><span class="meta-label">Engine</span><span class="meta-value">Unreal Engine 5</span></div>
+        <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">2020 – 2026</span></div>
+      </div>
+      <div class="badge-released">
+        <div class="badge-released-dot"></div>
+        Released June 5, 2026
+      </div>
+    </div>
+  </div>
+
+
+  <!-- OVERVIEW -->
+  <div class="section section--bordered">
+    <div class="eyebrow">Overview</div>
+    <!-- Single row: text left, three blocks right, always side by side -->
+    <div class="overview-blocks" style="display:flex; flex-wrap:wrap; gap:var(--space-10); align-items:stretch; justify-content:space-between;">
+
+      <div class="t-body" style="width:420px; flex-shrink:0;">
+        <p>Gothic 1 Remake is a full AAA reconstruction of the 2001 RPG classic, rebuilt in Unreal Engine 5 with modernised gameplay and fully redesigned levels faithful to the original world while improving navigation, readability and systemic depth.</p>
+        <p>I joined Alkimia Interactive in May 2020 as Level Designer and have been part of the project since pre-production. My work spans the entire blockout-to-final pipeline for multiple zones across the Colony — from macro layout decisions to detailed blockouts, LD documentation and puzzle integration with the quest systems.</p>
+        <p>Over six years I collaborated closely with art, narrative and systems teams to ensure every space served both gameplay clarity and the atmospheric density the original was known for.</p>
+        <p style="font-size:0.7rem; color:rgba(232,228,220,0.35); margin-top:var(--space-4); padding-top:var(--space-4); border-top: 0.5px solid var(--color-line);">Environmental dressing, lighting and final art pass were carried out by the Environment Art team. The LD team conducted multiple review rounds to ensure art iteration remained faithful to the proposed layout and design intent. Where necessary, direct edits were made to dressed environments to improve navigation flow and spatial readability.</p>
+      </div>
+
+      <div class="sidebar-block" style="flex:1; max-width:340px;">
+        <div class="sidebar-block-label">Responsibilities</div>
+        <div class="sidebar-block-content">
+          <ul class="sidebar-list">
+            <li>Macro world layout and zone planning</li>
+            <li>Blockout execution in UE4 / UE5</li>
+            <li>LD documentation and design briefs</li>
+            <li>Systemic puzzle design</li>
+            <li>Collaboration with narrative and quest teams</li>
+            <li>Blockout reviews and iteration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-block" style="flex:1; max-width:300px;">
+        <div class="sidebar-block-label">Blockout tools</div>
+        <div class="sidebar-block-content">
+          <ul class="sidebar-list">
+            <li>Unreal Engine 4 / 5</li>
+            <li>Predefined geometry pieces</li>
+            <li>UE Landscape tool</li>
+            <li>3ds Max (custom meshes)</li>
+            <li>Visual Scripting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-block" style="flex:1; max-width:320px;">
+        <div class="sidebar-block-label">Scope</div>
+        <div class="sidebar-block-content">
+          <ul class="sidebar-list">
+            <li>Open world areas</li>
+            <li>Camps &amp; faction hubs</li>
+            <li>Dungeons &amp; arenas</li>
+            <li>Organic areas (forests, transitions)</li>
+            <li>Puzzle design</li>
+            <li>Level art support</li>
+            <li>Collision setup</li>
+            <li>2-person LD team</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- TRAILER -->
+  <section class="section section--bordered">
+    <div class="eyebrow mb-6">Trailer</div>
+    <div class="trailer-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/n0R7BmfpD7k"
+        title="Gothic 1 Remake — Release Trailer"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+    <!-- DESIGN PROCESS -->
+  <div class="section section--bordered">
+    <div class="eyebrow">Design process</div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-title">Reference &amp; analysis</div>
+        <p class="process-desc">Studied the original Gothic world structure, flow, and player psychology. Identified what to preserve and what to redesign for modern readability.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-title">Macro layout</div>
+        <p class="process-desc">Defined zone boundaries, key landmarks, circulation paths and sight lines at a top-down level before any geometry was placed.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-title">Blockout</div>
+        <p class="process-desc">Built greyscale blockouts in UE4/UE5 to validate scale, pacing and spatial feel. Iterated with design leads before passing to art.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-title">Documentation &amp; handoff</div>
+        <p class="process-desc">Produced LD documentation covering intent, metrics, puzzle logic and known issues. Supported the art team during the dressing phase.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       LEVEL BREAKDOWN
+
+       HOW TO USE EACH ZONE CARD:
+       ─ card-level-top              → in-game image + description
+       ─ comparison-wrap             → blockout ↔ in-game slider with
+                                       prev/next to browse multiple pairs
+       ─ card-level-video (optional) → video walkthrough for this zone
+
+       HOW TO ADD COMPARISON PAIRS:
+       Inside .comparison, duplicate a .cpair block.
+       Each .cpair needs:
+         • .comparison-before  with your blockout image
+         • .comparison-after   with your in-game image
+         • a data-caption attribute for the label (optional)
+       The JS handles the rest automatically.
+
+       HOW TO ADD MORE ZONES:
+       Duplicate the entire <!-- ZONE 0X --> <!-- comment block.
+  ══════════════════════════════════════════════════════════════ --> 
+  <div class="section section--raised section--bordered">
+    <div class="eyebrow">Level breakdown</div>
+    <p class="t-body mb-10" style="max-width:680px;">A selection of zones from across the Valley of Mines, chosen to show range across typologies — open world, interior, hub and dungeon. I worked on over 18 zones throughout the project; these highlight key design decisions and the blockout-to-final pipeline.</p>
+
+    <!-- ── ZONE 01 ── -->
+    <div class="card-level reveal">
+
+      <div class="card-level-top">
+        <div class="card-level-image">
+          <img src="images/gothic_1_remake_OldCamp.jpg" alt="The Old Camp — Gothic 1 Remake">
+        </div>
+        <div class="card-level-body">
+          <div class="card-level-number">Zone 01</div>
+          <h3 class="t-subtitle">The Old Camp</h3>
+          <div class="card-level-type">Open World Hub · Faction Headquarters · Multi-storey Castle</div>
+          <p class="t-body" style="margin-bottom:var(--space-4);">
+            The Old Camp is the game's primary social and political hub — the first major space the player is guided toward, and the most layered in terms of faction hierarchy, access gating and environmental storytelling. My work covered the full zone from the outer circle through to the castle interior, underground areas and dungeon.
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:var(--space-5);">
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Designed the outer circle layout around four distinct functional areas — north entry, arena, smithy and merchants — each with its own landmark logic and NPC congregation points to make the space legible without a minimap.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Structured the castle as a verticality system: outer yard → first floor → second floor → big tower, with access gated by social progression rather than keys alone, so the space itself communicated the player's status within the faction.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Designed and documented the zone's puzzle systems: a hidden lever in the merchant's backroom revealing a secret passage to Gomez's wine cellar, a torch-lever secret in the fallen tower with an alternative meatbug-hole bypass, and a second torch-lever puzzle accessing a hidden torture room in the dungeons.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Produced full LD documentation covering subzone layouts, item placement across 62+ huts, environmental mechanics (melee, magic, climbing) and obstacle design for all vertical and underground spaces.
+            </li>
+          </ul>
+          <div class="flex-row flex-wrap gap-2">
+            <span class="pill">Open World Hub</span>
+            <span class="pill">Multi-zone Layout</span>
+            <span class="pill">Puzzle Design</span>
+            <span class="pill">LD Documentation</span>
+            <span class="pill">Vertical Design</span>
+            <span class="pill">UE5</span>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        COMPARISON BLOCK FOR ZONE 01
+        Add as many .cpair blocks as you need.
+        data-caption is optional — shows in the label bar below the slider.
+      -->
+      <div class="comparison-wrap">
+        <div class="comparison-nav">
+          <span class="comparison-nav-label">Blockout vs in-game</span>
+          <div class="comparison-nav-controls">
+            <button class="cpair-btn cpair-prev" aria-label="Previous view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L4 6l4 4"/></svg>
+            </button>
+            <span class="comparison-nav-counter"></span>
+            <button class="cpair-btn cpair-next" aria-label="Next view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="comparison" data-comparison>
+
+          <!-- Pair 1 -->
+          <div class="cpair  active" data-caption="Entrance area">
+            <div class="comparison-before">
+              <img src="images/OldCamp_Blockout_01.jpg" alt="OldCamp_Blockout_01">
+            </div>
+            <div class="comparison-after">
+              <img src="images/OldCamp_Dressing_01.jpg" alt="OldCamp_Dressing_01">
+            </div>
+          </div>
+
+          <!-- Pair 2 — duplicate this block to add more views -->
+          <div class="cpair" data-caption="Market Area">
+            <div class="comparison-before">
+              <img src="images/OldCamp_Blockout_02.jpg" alt="OldCamp_Blockout_02">
+            </div>
+            <div class="comparison-after">
+              <img src="images/OldCamp_Dressing_02.jpg" alt="OldCamp_Dressing_02">
+            </div>
+          </div>
+
+          <!-- Pair 3 -->
+          <div class="cpair" data-caption="Gomez Cellar">
+            <div class="comparison-before">
+              <img src="images/OldCamp_Blockout_03.jpg" alt="OldCamp_Blockout_03">
+            </div>
+            <div class="comparison-after">
+              <img src="images/OldCamp_Dressing_03.jpg" alt="OldCamp_Dressing_03">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Prison Dungeons">
+            <div class="comparison-before">
+              <img src="images/OldCamp_Blockout_04.jpg" alt="OldCamp_Blockout_04">
+            </div>
+            <div class="comparison-after">
+              <img src="images/OldCamp_Dressing_04.jpg" alt="OldCamp_Dressing_04">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Guards Building">
+            <div class="comparison-before">
+              <img src="images/OldCamp_Blockout_05.jpg" alt="OldCamp_Blockout_05">
+            </div>
+            <div class="comparison-after">
+              <img src="images/OldCamp_Dressing_05.jpg" alt="OldCamp_Dressing_05">
+            </div>
+          </div>
+
+          <div class="comparison-divider"></div>
+          <div class="comparison-handle">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8H1m0 0 3-3M1 8l3 3M11 8h4m0 0-3-3m3 3-3 3"/></svg>
+          </div>
+          <div class="comparison-label comparison-label-before">Blockout</div>
+          <div class="comparison-label comparison-label-after">In-game</div>
+          <div class="comparison-hint">Drag to compare</div>
+        </div>
+
+        <div class="cpair-caption"></div>
+      </div>
+
+      <!-- VIDEO WALKTHROUGH Zone 01 — add your YouTube ID when ready -->
+    </div><!-- end Zone 01 -->
+
+
+    <!-- ── ZONE 02 ── -->
+    <div class="card-level reveal">
+
+      <div class="card-level-top">
+        <div class="card-level-image">
+          <img src="images/gothic_1_remake_SleeperTemple.jpg" alt="The Sleeper's Temple — Gothic 1 Remake">
+        </div>
+        <div class="card-level-body">
+          <div class="card-level-number">Zone 02</div>
+          <h3 class="t-subtitle">The Sleeper's Temple</h3>
+          <div class="card-level-type">Underground Dungeon · Four Subzones · Boss Arena</div>
+          <p class="t-body" style="margin-bottom:var(--space-4);">
+            The Sleeper's Temple is the game's climactic underground dungeon, spanning four interconnected subzones beneath the Orc town. The Remake expands on the original with new spatial layers, environmental mechanics and a wider variety of puzzle systems.
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:var(--space-5);">
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Redesigned the full zone layout across four subzones, introducing a Minecrawler tunnel network as an alternative traversal layer and a Stronghold interior section as the final beat before the Sleeper's chamber.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Designed the full puzzle system for the Remake: symbol-based cryptext and statue rotation puzzles, a pattern-matching arena in the Varrag Kasorg chamber, a fluid-routing Blood Canal mechanic gating the third subzone, and environmental traversal puzzles tied to the Torture Pillars and Lava Extractor.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Produced full LD documentation covering all four subzones — layouts, 30+ landmarks and POIs, enemy distribution, puzzle breakdowns and dual item placement layouts (with and without tunnel system).
+            </li>
+          </ul>
+          <div class="flex-row flex-wrap gap-2">
+            <span class="pill">Dungeon Layout</span>
+            <span class="pill">Environmental Mechanics</span>
+            <span class="pill">Puzzle Design</span>
+            <span class="pill">Non-linear Routing</span>
+            <span class="pill">LD Documentation</span>
+            <span class="pill">UE5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comparison-wrap">
+        <div class="comparison-nav">
+          <span class="comparison-nav-label">Blockout vs in-game</span>
+          <div class="comparison-nav-controls">
+            <button class="cpair-btn cpair-prev" aria-label="Previous view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L4 6l4 4"/></svg>
+            </button>
+            <span class="comparison-nav-counter"></span>
+            <button class="cpair-btn cpair-next" aria-label="Next view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="comparison" data-comparison>
+          <div class="cpair  active" data-caption="Temple Entrance">
+            <div class="comparison-before">
+              <img src="images/SleeperTemple_Blockout_01.jpg" alt="SleeperTemple_Blockout_01">
+            </div>
+            <div class="comparison-after">
+              <img src="images/SleeperTemple_Dressing_01.jpg" alt="SleeperTemple_Dressing_01">
+            </div>
+          </div>
+          <div class="cpair" data-caption="First Subzone">
+            <div class="comparison-before">
+              <img src="images/SleeperTemple_Blockout_02.jpg" alt="SleeperTemple_Blockout_02">
+            </div>
+            <div class="comparison-after">
+              <img src="images/SleeperTemple_Dressing_02.jpg" alt="SleeperTemple_Dressing_02">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Blood Chambers Area">
+            <div class="comparison-before">
+              <img src="images/SleeperTemple_Blockout_03.jpg" alt="SleeperTemple_Blockout_03">
+            </div>
+            <div class="comparison-after">
+              <img src="images/SleeperTemple_Dressing_03.jpg" alt="SleeperTemple_Dressing_03">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Lava Stronghold">
+            <div class="comparison-before">
+              <img src="images/SleeperTemple_Blockout_04.jpg" alt="SleeperTemple_Blockout_04">
+            </div>
+            <div class="comparison-after">
+              <img src="images/SleeperTemple_Dressing_04.jpg" alt="SleeperTemple_Dressing_04">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Sleeper Area">
+            <div class="comparison-before">
+              <img src="images/SleeperTemple_Blockout_05.jpg" alt="SleeperTemple_Blockout_05">
+            </div>
+            <div class="comparison-after">
+              <img src="images/SleeperTemple_Dressing_05.jpg" alt="SleeperTemple_Dressing_05">
+            </div>
+          </div>
+
+          <div class="comparison-divider"></div>
+          <div class="comparison-handle">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8H1m0 0 3-3M1 8l3 3M11 8h4m0 0-3-3m3 3-3 3"/></svg>
+          </div>
+          <div class="comparison-label comparison-label-before">Blockout</div>
+          <div class="comparison-label comparison-label-after">In-game</div>
+          <div class="comparison-hint">Drag to compare</div>
+        </div>
+
+        <div class="cpair-caption"></div>
+      </div>
+
+      <!-- VIDEO WALKTHROUGH Zone 02 -->
+    </div><!-- end Zone 02 -->
+
+
+    <!-- ── ZONE 03 ── -->
+    <div class="card-level reveal">
+
+      <div class="card-level-top">
+        <div class="card-level-image">
+          <img src="images/gothic_1_remake_Tundra.jpg" alt="The Tundra — Gothic 1 Remake">
+        </div>
+        <div class="card-level-body">
+          <div class="card-level-number">Zone 03</div>
+          <h3 class="t-subtitle">Open World & Transition Areas</h3>
+          <div class="card-level-type">Open World · Transition Zones · Quest Hub</div>
+          <p class="t-body" style="margin-bottom:var(--space-4);">
+            The Tundra, Fisherman's Lake, and the Monastery represent interconnected landmark expansions designed to enrich the original world's layout and reward organic navigation.
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:var(--space-5);">
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Expanded the northern territory by introducing the Tundra section, a seamless vertical layer featuring a climbable mountain path, an open frosted wooded area anchored by a central waterfall, and a hidden shrine tucked behind the falls, meticulously paced to reward curiosity without hand-holding.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Shaped the Fisherman's Lake and the Monastery grounds as connective spaces — using terrain silhouette, water placement and sightlines to give each area its own identity while keeping it legible as a transition rather than a destination.
+            </li>
+            <li style="font-size:0.75rem;color:rgba(232,228,220,0.6);display:flex;gap:8px;align-items:baseline;">
+              <span style="color:var(--color-accent);flex-shrink:0;">—</span>
+              Worked primarily through UE Landscape tooling and organic mesh placement for these areas — a different blockout language to the architectural zones, focused on silhouette, pacing and natural sightlines rather than hard geometry.
+            </li>
+          </ul>
+          <div class="flex-row flex-wrap gap-2">
+            <span class="pill">New Content</span>
+            <span class="pill">Open World</span>
+            <span class="pill">Terrain Design</span>
+            <span class="pill">Landscape Tooling</span>
+            <span class="pill">Quest Hub</span>
+            <span class="pill">UE5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comparison-wrap">
+        <div class="comparison-nav">
+          <span class="comparison-nav-label">Blockout vs in-game</span>
+          <div class="comparison-nav-controls">
+            <button class="cpair-btn cpair-prev" aria-label="Previous view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L4 6l4 4"/></svg>
+            </button>
+            <span class="comparison-nav-counter"></span>
+            <button class="cpair-btn cpair-next" aria-label="Next view">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="comparison" data-comparison>
+          <div class="cpair  active" data-caption="Tundra Forest">
+            <div class="comparison-before">
+              <img src="images/Tundra_Blockout_01.jpg" alt="Tundra_Blockout_01">
+            </div>
+            <div class="comparison-after">
+              <img src="images/Tundra_Dressing_01.jpg" alt="Tundra_Dressing_01">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Fisherman's Lake">
+            <div class="comparison-before">
+              <img src="images/FishermanLake_Blockout_01.jpg" alt="FishermanLake_Blockout_01">
+            </div>
+            <div class="comparison-after">
+              <img src="images/FishermanLake_Dressing_01.jpg" alt="FishermanLake_Dressing_01">
+            </div>
+          </div>
+          <div class="cpair" data-caption="Monastery Ruins">
+            <div class="comparison-before">
+              <img src="images/Monastery_Blockout_01.jpg" alt="Monastery_Blockout_01">
+            </div>
+            <div class="comparison-after">
+              <img src="images/Monastery_Dressing_01.jpg" alt="Monastery_Dressing_01">
+            </div>
+          </div>
+
+          <div class="comparison-divider"></div>
+          <div class="comparison-handle">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8H1m0 0 3-3M1 8l3 3M11 8h4m0 0-3-3m3 3-3 3"/></svg>
+          </div>
+          <div class="comparison-label comparison-label-before">Blockout</div>
+          <div class="comparison-label comparison-label-after">In-game</div>
+          <div class="comparison-hint">Drag to compare</div>
+        </div>
+
+        <div class="cpair-caption"></div>
+      </div>
+
+      <!-- VIDEO WALKTHROUGH Zone 03 -->
+    </div><!-- end Zone 03 -->
+
+
+  </div><!-- end Level breakdown -->
+
+
+  <!-- PAGE FOOTER -->
+  <div class="page-footer">
+    <a href="index.html" class="nav-back">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6H2M6 10L2 6l4-4"/></svg>
+      Back to portfolio
+    </a>
+    <span class="footer-label" style="font-family:var(--font-head);font-size:var(--text-sm);">Alberto Relucio · Senior Level Designer</span>
+  </div>
+
+
+  <script>
+    /* ── SCREENSHOT SLIDESHOW (auto-advance) ── */
+    function initSlideshow(el) {
+      const slides   = Array.from(el.querySelectorAll('.slide'));
+      const dotsWrap = el.querySelector('.slide-dots');
+      const counter  = el.querySelector('.slide-counter');
+      let current = 0, timer;
+
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+      });
+
+      function go(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dotsWrap.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        counter.textContent = (current + 1) + ' / ' + slides.length;
+        clearInterval(timer);
+        timer = setInterval(() => go(current + 1), 5000);
+      }
+
+      el.querySelector('.slide-btn-prev').addEventListener('click', () => go(current - 1));
+      el.querySelector('.slide-btn-next').addEventListener('click', () => go(current + 1));
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft')  go(current - 1);
+        if (e.key === 'ArrowRight') go(current + 1);
+      });
+
+      counter.textContent = '1 / ' + slides.length;
+      timer = setInterval(() => go(current + 1), 5000);
+    }
+
+    document.querySelectorAll('.slideshow').forEach(initSlideshow);
+
+
+    /* ── COMPARISON SLIDER with pair navigation ── */
+    function initComparison(wrap) {
+      const el      = wrap.querySelector('[data-comparison]');
+      const pairs   = Array.from(el.querySelectorAll('.cpair'));
+      const after   = null; // per-pair, handled below
+      const divider = el.querySelector('.comparison-divider');
+      const handle  = el.querySelector('.comparison-handle');
+      const hint    = el.querySelector('.comparison-hint');
+      const counter = wrap.querySelector('.comparison-nav-counter');
+      const caption = wrap.querySelector('.cpair-caption');
+      const btnPrev = wrap.querySelector('.cpair-prev');
+      const btnNext = wrap.querySelector('.cpair-next');
+
+      let current  = 0;
+      let dragging = false;
+      let hintDone = false;
+      let pos      = 50; // percent
+
+      function getActiveAfter() {
+        return pairs[current].querySelector('.comparison-after');
+      }
+
+      function applyPos(pct) {
+        pos = Math.max(0, Math.min(100, pct));
+        getActiveAfter().style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+        divider.style.left  = pos + '%';
+        handle.style.left   = pos + '%';
+        handle.style.top    = '50%';
+        handle.style.transform = 'translate(-50%, -50%)';
+      }
+
+      function showPair(n) {
+        pairs[current].classList.remove('active');
+        current = Math.max(0, Math.min(pairs.length - 1, n));
+        pairs[current].classList.add('active');
+        applyPos(50); // reset to centre on each new pair
+        counter.textContent = (current + 1) + ' / ' + pairs.length;
+        caption.textContent = pairs[current].dataset.caption || '';
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current === pairs.length - 1;
+      }
+
+      function xFromEvent(e) {
+        return e.touches ? e.touches[0].clientX : e.clientX;
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        const rect = el.getBoundingClientRect();
+        applyPos(((xFromEvent(e) - rect.left) / rect.width) * 100);
+      }
+
+      function hideHint() {
+        if (hintDone) return;
+        hint.classList.add('hidden');
+        hintDone = true;
+      }
+
+      el.addEventListener('mousedown',  e => { e.preventDefault(); dragging = true; hideHint(); });
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup',   () => { dragging = false; });
+      el.addEventListener('touchstart', e => { dragging = true; hideHint(); onMove(e); }, { passive: true });
+      el.addEventListener('touchmove',  onMove, { passive: true });
+      el.addEventListener('touchend',   () => { dragging = false; });
+
+      btnPrev.addEventListener('click', () => showPair(current - 1));
+      btnNext.addEventListener('click', () => showPair(current + 1));
+
+      showPair(0);
+    }
+
+    document.querySelectorAll('.comparison-wrap').forEach(initComparison);
+
+
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+
+  <script>
+    /* ── GOTHIC PAGE CANVAS — diagonal gold grid sweep ── */
+    (function () {
+      var canvas = document.getElementById('gothic-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth  * dpr;
+        canvas.height = canvas.offsetHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', function () { ctx.setTransform(1,0,0,1,0,0); resize(); });
+
+      var CELL = 40;
+      var DURATION = 3800;
+      var DELAY    = 300;
+      var PK_V = 0.88; var PK_H = 0.65;
+      var RS_V = 0.14; var RS_H = 0.08;
+      var startTime = null;
+
+      function easeInOut(t) { return 0.5 - 0.5 * Math.cos(Math.PI * Math.max(0, Math.min(1, t))); }
+
+      function draw(ts) {
+        if (!startTime) startTime = ts;
+        var elapsed = ts - startTime - DELAY;
+        var W = canvas.offsetWidth;
+        var H = canvas.offsetHeight;
+        var maxD = W + H;
+        ctx.clearRect(0, 0, W, H);
+        var raw  = Math.max(0, Math.min(1, elapsed / DURATION));
+        var prog = easeInOut(raw);
+        var done = raw >= 1;
+
+        for (var x = 0; x <= W; x += CELL) {
+          var d = x / maxD;
+          var alpha, r, g, b, lw;
+          if (done) { alpha = RS_V; r = 200; g = 169; b = 110; lw = 0.5; }
+          else {
+            var dist = prog - d;
+            if (dist < 0) { alpha = 0.018; r = 30; g = 24; b = 14; lw = 0.5; }
+            else {
+              var rise = Math.min(1, dist / 0.035);
+              var fall = Math.max(0, 1 - dist / 0.30);
+              var glow = rise * fall;
+              var settle = Math.max(0, (dist - 0.30) / 0.15);
+              alpha = glow * PK_V + Math.min(1, settle) * RS_V;
+              alpha = Math.max(alpha, dist > 0.45 ? RS_V : 0);
+              r = Math.round(10 + (200-10) * glow); g = Math.round(8 + (169-8) * glow); b = Math.round(4 + (110-4) * glow);
+              lw = 0.5 + glow * 1.0;
+            }
+          }
+          ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H);
+          ctx.strokeStyle='rgba('+r+','+g+','+b+','+alpha+')'; ctx.lineWidth=lw; ctx.stroke();
+        }
+
+        for (var y = 0; y <= H; y += CELL) {
+          var dH = y / maxD;
+          var alphaH, rH, gH, bH, lwH;
+          if (done) { alphaH = RS_H; rH=200; gH=169; bH=110; lwH=0.5; }
+          else {
+            var distH = prog - dH;
+            if (distH < 0) { alphaH=0.014; rH=30; gH=24; bH=14; lwH=0.5; }
+            else {
+              var riseH=Math.min(1,distH/0.035); var fallH=Math.max(0,1-distH/0.30); var glowH=riseH*fallH;
+              var settleH=Math.max(0,(distH-0.30)/0.15);
+              alphaH=glowH*PK_H+Math.min(1,settleH)*RS_H; alphaH=Math.max(alphaH,distH>0.45?RS_H:0);
+              rH=Math.round(10+(200-10)*glowH); gH=Math.round(8+(169-8)*glowH); bH=Math.round(4+(110-4)*glowH); lwH=0.5+glowH*0.7;
+            }
+          }
+          ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y);
+          ctx.strokeStyle='rgba('+rH+','+gH+','+bH+','+alphaH+')'; ctx.lineWidth=lwH; ctx.stroke();
+        }
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>

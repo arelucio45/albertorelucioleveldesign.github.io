@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alberto Relucio — Senior Level Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#hero" class="nav-logo">Alberto Relucio</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#work"    onclick="closeDrawer()">Work</a>
+    <a href="#career"  onclick="closeDrawer()">Career</a>
+    <a href="#about"   onclick="closeDrawer()">About</a>
+    <a href="#contact" onclick="closeDrawer()">Contact</a>
+  </div>
+
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;">
+      <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+    </div>
+    <div class="hero-gradient"></div>
+
+    <div class="hero-inner hero-inner--centered">
+
+      <!-- Diamond: purely decorative, sits behind text -->
+      <div class="hero-diamond-wrap" aria-hidden="true">
+        <svg class="hero-diamond-svg" id="hero-diamond" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline id="d-outer" points="350,14 686,350 350,686 14,350 350,14"
+            stroke="rgba(200,169,110,0.40)" stroke-width="0.9" fill="none"
+            visibility="hidden"/>
+          <polyline id="d-inner" points="350,90 610,350 350,610 90,350 350,90"
+            stroke="rgba(200,169,110,0.16)" stroke-width="0.5" fill="none"
+            visibility="hidden"/>
+          <circle id="d-top"    cx="350" cy="14"  r="3.5" fill="rgba(200,169,110,0.85)" visibility="hidden"/>
+          <circle id="d-right"  cx="686" cy="350" r="3.5" fill="rgba(200,169,110,0.85)" visibility="hidden"/>
+          <circle id="d-bottom" cx="350" cy="686" r="3.5" fill="rgba(200,169,110,0.85)" visibility="hidden"/>
+          <circle id="d-left"   cx="14"  cy="350" r="3.5" fill="rgba(200,169,110,0.85)" visibility="hidden"/>
+          <line id="d-axis-h" x1="14" y1="350" x2="686" y2="350"
+            stroke="rgba(200,169,110,0.07)" stroke-width="0.5" visibility="hidden"/>
+          <line id="d-axis-v" x1="350" y1="14" x2="350" y2="686"
+            stroke="rgba(200,169,110,0.07)" stroke-width="0.5" visibility="hidden"/>
+        </svg>
+      </div>
+
+      <!-- Corner brackets: mobile only decorative frame -->
+      <div class="hero-corners" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-corners-svg" id="hero-corners">
+          <!-- Top-left outer -->
+          <polyline id="hc-tl" points="0,40 0,0 40,0" stroke="rgba(200,169,110,0.7)" stroke-width="1.2" fill="none" visibility="hidden"/>
+          <!-- Top-left inner -->
+          <polyline id="hc-tl2" points="14,28 14,14 28,14" stroke="rgba(200,169,110,0.4)" stroke-width="0.8" fill="none" visibility="hidden"/>
+          <!-- Top-right outer -->
+          <polyline id="hc-tr" points="260,0 300,0 300,40" stroke="rgba(200,169,110,0.7)" stroke-width="1.2" fill="none" visibility="hidden"/>
+          <!-- Top-right inner -->
+          <polyline id="hc-tr2" points="272,14 286,14 286,28" stroke="rgba(200,169,110,0.4)" stroke-width="0.8" fill="none" visibility="hidden"/>
+          <!-- Bottom-right outer -->
+          <polyline id="hc-br" points="300,260 300,300 260,300" stroke="rgba(200,169,110,0.7)" stroke-width="1.2" fill="none" visibility="hidden"/>
+          <!-- Bottom-right inner -->
+          <polyline id="hc-br2" points="286,272 286,286 272,286" stroke="rgba(200,169,110,0.4)" stroke-width="0.8" fill="none" visibility="hidden"/>
+          <!-- Bottom-left outer -->
+          <polyline id="hc-bl" points="40,300 0,300 0,260" stroke="rgba(200,169,110,0.7)" stroke-width="1.2" fill="none" visibility="hidden"/>
+          <!-- Bottom-left inner -->
+          <polyline id="hc-bl2" points="28,286 14,286 14,272" stroke="rgba(200,169,110,0.4)" stroke-width="0.8" fill="none" visibility="hidden"/>
+        </svg>
+      </div>
+
+      <!-- Identity: centred on top of diamond -->
+      <div class="hero-identity">
+        <p class="hero-role">Senior Level Designer</p>
+        <h1 class="hero-name">Alberto<br>Relucio</h1>
+        <p class="hero-bio">
+          7+ years designing open-world RPG levels.<br>
+          Currently at Alkimia Interactive.
+        </p>
+        <div class="flex-row flex-wrap gap-3 mt-4" style="justify-content:center;">
+          <a href="#work"    class="btn">View work</a>
+          <a href="#contact" class="link-inline" style="align-self:center">Get in touch</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="hero-scroll-line"></div>
+      <span class="hero-scroll-label">Scroll</span>
+    </div>
+  </section>
+
+
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-label">Experience</div>
+      <div class="t-stat">7+ years</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Engine</div>
+      <div class="t-stat">UE4 / UE5</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Speciality</div>
+      <div class="t-stat">RPG · Open World</div>
+    </div>
+  </div>
+
+
+  <!-- WORK -->
+  <section class="section" id="work">
+    <div class="eyebrow">Selected work</div>
+
+    <div class="card-featured reveal">
+      <div class="card-image">
+        <--
+          ADD YOUR IMAGE:
+          <img src="images/gothic-hero.jpg" alt="Gothic 1 Remake — level overview">
+        -->
+        <div class="placeholder">
+          Gothic 1 Remake<br>Screenshot / blockout<br>
+          <!--<span style="opacity:0.4;font-size:0.5rem;">images/gothic-hero.jpg</span>*/-->
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="tag mb-4">AAA · Open World · RPG</div>
+          <h2 class="t-title mb-3">Gothic 1<br>Remake</h2>
+          <p class="t-meta mb-6" style="letter-spacing:0.04em;">Alkimia Interactive &nbsp;·&nbsp; 2020 – June 2026</p>
+          <p class="t-body mb-8">
+            World blockout and level design for the AAA remake of the classic RPG, released
+            June 5, 2026. Worked within the level design team recreating the Colony across its
+            zones in Unreal Engine 5 — covering macro layout planning, blockout execution and
+            LD documentation.
+          </p>
+          <div class="flex-row flex-wrap gap-2 mb-10">
+            <span class="pill">World Remake</span>
+            <span class="pill">Blockout</span>
+            <span class="pill">LD Documentation</span>
+            <span class="pill">Systemic Design</span>
+            <span class="pill">Puzzle Design</span>
+            <span class="pill">UE5</span>
+          </div>
+        </div>
+        <a href="gothic.html" class="link-inline">
+          View case study
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ACADEMIC WORK -->
+
+
+  <!-- CAREER -->
+  <section class="section section--bordered" id="career">
+    <div class="eyebrow">Career</div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">May 2025<br>Present</div>
+        <div class="timeline-spine">
+          <div class="timeline-dot timeline-dot--current"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-body">
+          <div class="t-role mb-1">Senior Level Designer</div>
+          <div class="timeline-company">Alkimia Interactive</div>
+          <p class="timeline-note">Promoted to Senior LD. Took on greater design ownership within the level design team, personally driving the majority of zones and levels through to ship for Gothic 1 Remake, June 2026.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">May 2020<br>May 2025</div>
+        <div class="timeline-spine">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-body">
+          <div class="t-role mb-1">Level Designer</div>
+          <div class="timeline-company">Alkimia Interactive</div>
+          <p class="timeline-note">Five years building the world of Gothic 1 Remake in UE4/UE5. Responsible for blockouts, macro layout, LD documentation and systemic puzzle design.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jul 2019<br>Feb 2020</div>
+        <div class="timeline-spine">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-body">
+          <div class="t-role mb-1">Junior Level Designer</div>
+          <div class="timeline-company">Genera Games</div>
+          <p class="timeline-note">Mobile game level design. First professional LD role.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Feb 2019<br>Jun 2019</div>
+        <div class="timeline-spine">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-body">
+          <div class="t-role mb-1">Junior Game Designer</div>
+          <div class="timeline-company">Stage Clear Studios</div>
+          <p class="timeline-note">Game design on mobile titles.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jun 2018<br>Mar 2019</div>
+        <div class="timeline-spine">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-body">
+          <div class="t-role mb-1">QA Tester</div>
+          <div class="timeline-company">Stage Clear Studios</div>
+          <p class="timeline-note">Quality assurance on mobile titles. Entry point into the industry.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="section section--raised section--bordered grid-about" id="about">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2 class="t-heading mb-2">Alberto<br>Relucio</h2>
+      <p class="tag mb-6" style="letter-spacing:0.2em;">Senior Level Designer</p>
+      <div class="t-body">
+        <p>Senior Level Designer with 7+ years in the games industry. Currently at Alkimia Interactive, where I spent six years contributing to Gothic 1 Remake alongside the LD team — from early blockouts through to ship.</p>
+        <p>Specialised in open-world RPG layout, blockout-to-final pipelines, and LD documentation. Degree in Interactive Product Design with a focus on game design — final thesis on level design in Resident Evil, awarded with Distinction.</p>
+        <p>Started in QA, moved through game design into level design, with early experience across mobile titles before transitioning to AAA.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow">Skills &amp; tools</div>
+      <div style="margin-bottom:var(--space-8);">
+        <div class="stat-label mb-3">Level Design</div>
+        <div class="flex-row flex-wrap gap-2">
+          <span class="skill-tag">World Layout</span>
+          <span class="skill-tag">Blockout</span>
+          <span class="skill-tag">LD Documentation</span>
+          <span class="skill-tag">Systemic Design</span>
+          <span class="skill-tag">Puzzle Design</span>
+          <span class="skill-tag">Open World</span>
+          <span class="skill-tag">RPG Design</span>
+        </div>
+      </div>
+      <div style="margin-bottom:var(--space-8);">
+        <div class="stat-label mb-3">Tools</div>
+        <div class="flex-row flex-wrap gap-2">
+          <span class="skill-tag">Unreal Engine 5</span>
+          <span class="skill-tag">Unreal Engine 4</span>
+          <span class="skill-tag">Visual Scripting</span>
+          <!-- Add tools you actually use -->
+        </div>
+      </div>
+      <div>
+        <div class="stat-label mb-3">Background</div>
+        <div class="flex-row flex-wrap gap-2">
+          <span class="skill-tag">Game Design</span>
+          <span class="skill-tag">QA</span>
+          <span class="skill-tag">AAA Production</span>
+          <span class="skill-tag">Mobile</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="section section--bordered section--center" id="contact">
+    <div class="eyebrow centered">Contact</div>
+    <h2 class="t-heading mb-2" style="font-size:var(--text-cta);">Get in touch</h2>
+    <p class="t-meta mb-10">Feel free to reach out via email or find me on the links below.</p>
+    <div class="contact-links">
+      <!-- REPLACE with your real details -->
+      <a href="mailto:arelucio.designer.info@gmail.com" class="link-ghost">Email</a>
+      <a href="https://www.linkedin.com/in/alberto-relucio-gallego" target="_blank" rel="noopener" class="link-ghost">LinkedIn</a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-copy">© 2026 Alberto Relucio</span>
+    <span class="footer-label">Senior Level Designer</span>
+  </footer>
+
+
+  <script>
+    /* ── HERO CANVAS — slow diagonal gold sweep, persistent grid ── */
+    (function () {
+      var canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth  * dpr;
+        canvas.height = canvas.offsetHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', function () { ctx.setTransform(1,0,0,1,0,0); resize(); });
+
+      var CELL=40, DURATION=3800, DELAY=400;
+      var PK_V=0.88, PK_H=0.65, RS_V=0.14, RS_H=0.08;
+      var startTime=null;
+
+      function easeInOut(t) { return 0.5-0.5*Math.cos(Math.PI*Math.max(0,Math.min(1,t))); }
+
+      function draw(ts) {
+        if (!startTime) startTime=ts;
+        var elapsed=ts-startTime-DELAY;
+        var W=canvas.offsetWidth, H=canvas.offsetHeight, maxD=W+H;
+        ctx.clearRect(0,0,W,H); ctx.fillStyle='#0a0804'; ctx.fillRect(0,0,W,H);
+        var raw=Math.max(0,Math.min(1,elapsed/DURATION)), prog=easeInOut(raw), done=raw>=1;
+
+        for (var x=0;x<=W;x+=CELL) {
+          var d=x/maxD, alpha,r,g,b,lw;
+          if(done){alpha=RS_V;r=200;g=169;b=110;lw=0.5;}
+          else{var dist=prog-d;
+            if(dist<0){alpha=0.018;r=30;g=24;b=14;lw=0.5;}
+            else{var rise=Math.min(1,dist/0.035),fall=Math.max(0,1-dist/0.30),glow=rise*fall,settle=Math.max(0,(dist-0.30)/0.15);
+              alpha=glow*PK_V+Math.min(1,settle)*RS_V; alpha=Math.max(alpha,dist>0.45?RS_V:0);
+              r=Math.round(10+(200-10)*glow);g=Math.round(8+(169-8)*glow);b=Math.round(4+(110-4)*glow);lw=0.5+glow*1.0;}}
+          ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);
+          ctx.strokeStyle='rgba('+r+','+g+','+b+','+alpha+')';ctx.lineWidth=lw;ctx.stroke();
+        }
+
+        for (var y=0;y<=H;y+=CELL) {
+          var dH=y/maxD,alphaH,rH,gH,bH,lwH;
+          if(done){alphaH=RS_H;rH=200;gH=169;bH=110;lwH=0.5;}
+          else{var distH=prog-dH;
+            if(distH<0){alphaH=0.014;rH=30;gH=24;bH=14;lwH=0.5;}
+            else{var riseH=Math.min(1,distH/0.035),fallH=Math.max(0,1-distH/0.30),glowH=riseH*fallH,settleH=Math.max(0,(distH-0.30)/0.15);
+              alphaH=glowH*PK_H+Math.min(1,settleH)*RS_H;alphaH=Math.max(alphaH,distH>0.45?RS_H:0);
+              rH=Math.round(10+(200-10)*glowH);gH=Math.round(8+(169-8)*glowH);bH=Math.round(4+(110-4)*glowH);lwH=0.5+glowH*0.7;}}
+          ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);
+          ctx.strokeStyle='rgba('+rH+','+gH+','+bH+','+alphaH+')';ctx.lineWidth=lwH;ctx.stroke();
+        }
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
+  </script>
+
+  <script>
+        /* ── DIAMOND ANIMATION — starts fully hidden, draws on load ── */
+    (function () {
+
+      function show(id, delay, dur) {
+        /* Fade in via opacity after making visible */
+        var el = document.getElementById(id);
+        if (!el) return;
+        setTimeout(function () {
+          el.setAttribute('visibility', 'visible');
+          el.style.opacity = '0';
+          el.style.transition = 'opacity ' + (dur || 500) + 'ms ease';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.style.opacity = '1';
+            });
+          });
+        }, delay);
+      }
+
+      function drawLine(id, delay, duration) {
+        /* Draw polyline using stroke-dashoffset */
+        var el = document.getElementById(id);
+        if (!el) return;
+        var perim = id === 'd-outer' ? 1904 : 1440;
+        /* Set up dash BEFORE making visible */
+        el.setAttribute('stroke-dasharray', perim);
+        el.setAttribute('stroke-dashoffset', perim);
+        setTimeout(function () {
+          el.setAttribute('visibility', 'visible');
+          el.style.opacity = '1';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.style.transition = 'stroke-dashoffset ' + duration + 'ms cubic-bezier(0.3,0,0.2,1)';
+              el.setAttribute('stroke-dashoffset', '0');
+            });
+          });
+        }, delay);
+      }
+
+      var T = 500;
+
+      /* 1 — Axis lines first, subtle */
+      show('d-axis-h', T, 600);
+      show('d-axis-v', T, 600); T += 600;
+
+      /* 2 — Outer diamond draws itself */
+      drawLine('d-outer', T, 1600); T += 500;
+
+      /* 3 — Dots appear as diamond reaches each corner */
+      show('d-top',    T,        200); T += 400;
+      show('d-right',  T,        200); T += 400;
+      show('d-bottom', T,        200); T += 400;
+      show('d-left',   T,        200); T += 500;
+
+      /* 4 — Inner diamond fades in */
+      show('d-inner', T, 800);
+
+    })();
+
+    /* ── CORNER BRACKETS ANIMATION — mobile only ── */
+    (function () {
+      var corners = ['hc-tl', 'hc-tr', 'hc-br', 'hc-bl'];
+      var isMobile = window.innerWidth <= 768;
+      if (!isMobile) return;
+
+      corners.forEach(function(id, i) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var perim = 80;
+        el.setAttribute('stroke-dasharray', perim);
+        el.setAttribute('stroke-dashoffset', perim);
+        setTimeout(function () {
+          el.setAttribute('visibility', 'visible');
+          el.style.opacity = '1';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.style.transition = 'stroke-dashoffset 400ms cubic-bezier(0.3,0,0.2,1)';
+              el.setAttribute('stroke-dashoffset', '0');
+            });
+          });
+        }, 300 + i * 120);
+
+        /* Inner corner appears slightly after outer */
+        var el2 = document.getElementById(id + '2');
+        if (!el2) return;
+        var perim2 = 42;
+        el2.setAttribute('stroke-dasharray', perim2);
+        el2.setAttribute('stroke-dashoffset', perim2);
+        setTimeout(function () {
+          el2.setAttribute('visibility', 'visible');
+          el2.style.opacity = '1';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el2.style.transition = 'stroke-dashoffset 300ms cubic-bezier(0.3,0,0.2,1)';
+              el2.setAttribute('stroke-dashoffset', '0');
+            });
+          });
+        }, 500 + i * 120);
+      });
+    })();
+  </script>
+
+</body>
+</html>
