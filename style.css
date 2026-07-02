@@ -1961,16 +1961,3 @@ button {
 }
 
 
-
-
-  .hero-corners { display: none; }
-
-  .hero-inner--centered .hero-name {
-    font-size: 2rem;
-  }
-
-  .hero-inner--centered .hero-bio {
-    display: none;
-  }
-}
-
