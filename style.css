@@ -2008,15 +2008,15 @@ button {
   .card-level-image {
     border-right: 0.5px solid var(--color-line) !important;
     border-bottom: none !important;
-    aspect-ratio: unset !important;
+    aspect-ratio: 16 / 9 !important;
   }
   .card-level-image img {
     padding: 8px !important;
     object-fit: contain !important;
-    position: relative !important;
-    inset: auto !important;
+    position: absolute !important;
+    inset: 0 !important;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
   }
 
   /* Card body: full width text */
