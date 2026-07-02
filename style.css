@@ -1002,8 +1002,9 @@ button {
   background: var(--color-bg-warm-mid);
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
-  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* 16:9 */
   align-self: center;
 }
 
@@ -1038,9 +1039,10 @@ button {
 
 .card-academic-image {
   background: #0f0e0c;
-  aspect-ratio: 16 / 9;
   position: relative;
-  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* 16:9 */
   align-self: center;
   border-right: 0.5px solid var(--color-line);
   overflow: hidden;
@@ -1085,10 +1087,11 @@ button {
 
 .card-level-image {
   background: #0f0e0c;
-  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
-  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* 16:9 */
   align-self: center;
   border-right: 0.5px solid var(--color-line);
 }
