@@ -1965,33 +1965,73 @@ button {
   }
 }
 
-/* ── MOBILE LANDSCAPE ── */
-@media (max-width: 900px) and (orientation: landscape) {
-  /* Hero: allow scroll instead of forcing 100vh */
+
+
+/* ── MOBILE LANDSCAPE — solo hero, sin tocar layout de contenido ── */
+@media (max-height: 500px) and (orientation: landscape) {
   .hero {
     height: auto;
-    min-height: 100svh;
-    padding: 80px var(--section-x) 40px;
+    min-height: calc(100svh - var(--nav-height));
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
-  /* Diamond corners: smaller in landscape */
-  .hero-corners-svg {
-    width: min(260px, 70vh);
-    height: min(260px, 70vh);
-  }
+  .hero-corners { display: none; }
 
-  /* Hero name: smaller */
   .hero-inner--centered .hero-name {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
-  /* Stat bar: single row */
-  .stat-bar {
-    flex-direction: row;
+  .hero-inner--centered .hero-bio {
+    display: none;
+  }
+}
+
+/* ── LANDSCAPE MOBILE — treat as compact desktop ── */
+@media (max-height: 500px) and (orientation: landscape) {
+
+  /* Overview blocks: horizontal again */
+  .overview-blocks {
+    flex-direction: row !important;
+  }
+  .overview-blocks .sidebar-block {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex: 1 !important;
   }
 
-  /* Card level top: stack in landscape too */
+  /* Card level top: side by side again */
   .card-level-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 2fr !important;
+  }
+  .card-level-image {
+    border-right: 0.5px solid var(--color-line) !important;
+    border-bottom: none !important;
+    aspect-ratio: unset !important;
+  }
+  .card-level-image img {
+    padding: 8px !important;
+    object-fit: contain !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Card body: full width text */
+  .card-level-body {
+    max-width: 100% !important;
+  }
+
+  /* Comparison: keep 16/9 */
+  .comparison-wrap .comparison {
+    max-width: 700px !important;
+  }
+
+  /* Page header: compact */
+  .page-header {
+    padding-top: 80px !important;
+    padding-bottom: 20px !important;
   }
 }
