@@ -1967,14 +1967,6 @@ button {
 
 
 
-/* ── MOBILE LANDSCAPE — solo hero, sin tocar layout de contenido ── */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    height: auto;
-    min-height: calc(100svh - var(--nav-height));
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
 
   .hero-corners { display: none; }
 
@@ -1987,13 +1979,6 @@ button {
   }
 }
 
-/* ── LANDSCAPE MOBILE — treat as compact desktop ── */
-@media (max-height: 500px) and (orientation: landscape) {
-
-  /* Overview blocks: horizontal again */
-  .overview-blocks {
-    flex-direction: row !important;
-  }
   .overview-blocks .sidebar-block {
     width: auto !important;
     max-width: none !important;
