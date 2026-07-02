@@ -459,8 +459,7 @@
     /* ── CORNER BRACKETS ANIMATION — mobile only ── */
     (function () {
       var corners = ['hc-tl', 'hc-tr', 'hc-br', 'hc-bl'];
-      var isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (!isMobile) return;
+      var isMobile = true; // CSS handles display:none on desktop
 
       corners.forEach(function(id, i) {
         var el = document.getElementById(id);
