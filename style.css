@@ -1887,7 +1887,7 @@ button {
   display: none; /* hidden on desktop */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .hero-corners {
     display: block;
     position: absolute;
@@ -1898,7 +1898,6 @@ button {
 
   .hero-corners-svg {
     position: absolute;
-    /* Fit snugly around the identity block */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
