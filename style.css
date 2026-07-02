@@ -740,7 +740,7 @@ button {
   max-width: 320px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .hero-diamond-wrap {
     display: none;
   }
@@ -750,10 +750,6 @@ button {
   .hero-inner--centered .hero-identity {
     max-width: 320px;
     padding: 16px;
-  }
-}
-    max-width: 260px;
-    padding: 12px;
   }
 }
 
@@ -1043,8 +1039,8 @@ button {
 
 .card-academic-image {
   background: #0f0e0c;
+  aspect-ratio: 16 / 9;
   position: relative;
-  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1091,7 +1087,7 @@ button {
 
 .card-level-image {
   background: #0f0e0c;
-  min-height: 220px;
+  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1609,7 +1605,7 @@ button {
 }
 
 /* Mobile — 768px */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   :root {
     --section-y: 56px;
     --section-x: 20px;
@@ -1644,7 +1640,7 @@ button {
   .stat-item:last-child { border-bottom: none; }
 
   /* Cards */
-  .card-featured { grid-template-columns: 1fr; }
+  .card-featured { display: block; }
   .card-image    { aspect-ratio: 16 / 9; min-height: 0; }
   .card-body {
     border-left: none;
@@ -1652,17 +1648,15 @@ button {
     padding: 28px var(--section-x);
   }
 
-  .card-academic { grid-template-columns: 1fr; }
+  .card-academic { display: block; }
   .card-academic-image {
-    min-height: 160px;
     border-right: none;
     border-bottom: 0.5px solid var(--color-line);
   }
   .card-academic-body { padding: var(--space-6); }
 
-  .card-level-top { grid-template-columns: 1fr; }
+  .card-level-top { display: block; }
   .card-level-image {
-    min-height: 180px;
     border-right: none;
     border-bottom: 0.5px solid var(--color-line);
   }
@@ -1679,7 +1673,7 @@ button {
   .card-level-image::after,
   .card-level-image .img-corner-bl,
   .card-level-image .img-corner-br { display: none; }
-  .card-level-body { padding: var(--space-5); max-width: 100%; }
+  .card-level-body { padding: var(--space-5); max-width: min(100%, 640px); margin: 0 auto; }
 
   .card-level-comparison { grid-template-columns: 1fr; }
   .card-level-comparison-item:first-child {
@@ -1838,9 +1832,29 @@ body.lightbox-lock { overflow: hidden; }
 }
 .lightbox-close:hover { border-color: var(--color-accent-border); color: var(--color-accent); }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .lightbox-overlay { padding: 64px 0 0; }
   .lightbox-content .comparison-wrap .comparison { max-height: none; aspect-ratio: 16 / 9; }
+}
+
+/* Landscape phones: fit the whole comparator (nav + image + caption) inside the
+   screen height rather than forcing a 16:9 image, which pushed the prev/next
+   nav bar off-screen. The comparator image just fills whatever space is left. */
+@media (max-height: 700px) and (orientation: landscape) {
+  .lightbox-overlay {
+    padding: 12px 16px;
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .lightbox-content {
+    width: 100%;
+    margin: auto 0; /* centres it when it fits, scrolls into view when it doesn't */
+  }
+  .lightbox-content .comparison-wrap .comparison {
+    aspect-ratio: 16 / 9;
+    max-height: none;
+  }
 }
 
 /* ── LEVEL BREAKDOWN: compare + video side by side ── */
@@ -1868,7 +1882,7 @@ body.lightbox-lock { overflow: hidden; }
 .card-level-video-caption { padding: 8px 14px; font-size: 0.5625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-muted); border-top: 0.5px solid var(--color-line); background: var(--color-bg); min-height: 41px; display: flex; align-items: center; }
 
 /* ── GOTHIC RESPONSIVE ── */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .card-level-bottom {
     grid-template-columns: 1fr;
   }
@@ -1905,7 +1919,7 @@ body.lightbox-lock { overflow: hidden; }
 }
 
 /* ── GOTHIC OVERVIEW BLOCKS — mobile stack ── */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .overview-blocks {
     flex-direction: column !important;
     gap: var(--space-3) !important;
@@ -1918,10 +1932,13 @@ body.lightbox-lock { overflow: hidden; }
     flex: none !important;
   }
 
-  /* Text column full width on mobile */
+  /* Text column full width on mobile, but capped for readable line-length in landscape */
   .overview-blocks ~ div,
   [style*="width:420px"] {
     width: 100% !important;
+    max-width: min(100%, 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
@@ -1951,7 +1968,7 @@ body.lightbox-lock { overflow: hidden; }
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .slideshow { max-width: 100%; }
 }
 
@@ -1993,12 +2010,48 @@ body.lightbox-lock { overflow: hidden; }
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 700px) and (orientation: landscape) {
   .trailer-wrap {
     max-width: 100%;
     border-radius: 0;
     border-left: none;
     border-right: none;
+  }
+}
+
+/* ── WIDE-BUT-TIGHT SCREENS ──
+   The Overview text column has a fixed, non-shrinking width (420px) and the
+   Level Breakdown image sits in a 1fr/2fr grid — both need real room to work.
+   Below ~1024px of width they run out of space and overflow/clip, regardless
+   of orientation or device height, so collapse them independently of that. */
+@media (max-width: 1024px) {
+  .card-level-top { display: block; }
+  .card-level-image {
+    border-right: none;
+    border-bottom: 0.5px solid var(--color-line);
+  }
+  .card-level-image::before,
+  .card-level-image::after,
+  .card-level-image .img-corner-bl,
+  .card-level-image .img-corner-br { display: none; }
+  .card-level-body { padding: var(--space-5); max-width: min(100%, 640px); margin: 0 auto; }
+
+  .overview-blocks {
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+  }
+  .overview-blocks .sidebar-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+  .overview-blocks ~ div,
+  [style*="width:420px"] {
+    width: 100% !important;
+    max-width: min(100%, 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
