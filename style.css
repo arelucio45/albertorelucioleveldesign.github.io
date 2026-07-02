@@ -752,10 +752,6 @@ button {
     padding: 16px;
   }
 }
-    max-width: 260px;
-    padding: 12px;
-  }
-}
 
 /* Two-column hero layout: identity left, project right */
 .hero-inner {
@@ -1043,8 +1039,8 @@ button {
 
 .card-academic-image {
   background: #0f0e0c;
+  aspect-ratio: 4 / 3;
   position: relative;
-  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1091,7 +1087,7 @@ button {
 
 .card-level-image {
   background: #0f0e0c;
-  min-height: 220px;
+  aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1654,7 +1650,6 @@ button {
 
   .card-academic { grid-template-columns: 1fr; }
   .card-academic-image {
-    min-height: 160px;
     border-right: none;
     border-bottom: 0.5px solid var(--color-line);
   }
@@ -1662,7 +1657,6 @@ button {
 
   .card-level-top { grid-template-columns: 1fr; }
   .card-level-image {
-    min-height: 180px;
     border-right: none;
     border-bottom: 0.5px solid var(--color-line);
   }
@@ -1679,7 +1673,7 @@ button {
   .card-level-image::after,
   .card-level-image .img-corner-bl,
   .card-level-image .img-corner-br { display: none; }
-  .card-level-body { padding: var(--space-5); max-width: 100%; }
+  .card-level-body { padding: var(--space-5); max-width: min(100%, 640px); margin: 0 auto; }
 
   .card-level-comparison { grid-template-columns: 1fr; }
   .card-level-comparison-item:first-child {
@@ -1918,10 +1912,13 @@ body.lightbox-lock { overflow: hidden; }
     flex: none !important;
   }
 
-  /* Text column full width on mobile */
+  /* Text column full width on mobile, but capped for readable line-length in landscape */
   .overview-blocks ~ div,
   [style*="width:420px"] {
     width: 100% !important;
+    max-width: min(100%, 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
