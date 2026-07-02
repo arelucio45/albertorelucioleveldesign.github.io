@@ -1003,6 +1003,7 @@ button {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 9;
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1041,6 +1042,7 @@ button {
   background: #0f0e0c;
   aspect-ratio: 16 / 9;
   position: relative;
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1090,6 +1092,7 @@ button {
   aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
