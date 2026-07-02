@@ -1964,3 +1964,34 @@ button {
     border-right: none;
   }
 }
+
+/* ── MOBILE LANDSCAPE ── */
+@media (max-width: 900px) and (orientation: landscape) {
+  /* Hero: allow scroll instead of forcing 100vh */
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    padding: 80px var(--section-x) 40px;
+  }
+
+  /* Diamond corners: smaller in landscape */
+  .hero-corners-svg {
+    width: min(260px, 70vh);
+    height: min(260px, 70vh);
+  }
+
+  /* Hero name: smaller */
+  .hero-inner--centered .hero-name {
+    font-size: 2.2rem;
+  }
+
+  /* Stat bar: single row */
+  .stat-bar {
+    flex-direction: row;
+  }
+
+  /* Card level top: stack in landscape too */
+  .card-level-top {
+    grid-template-columns: 1fr;
+  }
+}
