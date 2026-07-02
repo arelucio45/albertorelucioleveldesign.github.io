@@ -1091,12 +1091,22 @@ button {
 
 .card-level-image {
   background: #0f0e0c;
+  min-height: 220px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   border-right: 0.5px solid var(--color-line);
+}
+
+.card-level-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 
@@ -1128,23 +1138,7 @@ button {
   pointer-events: none;
 }
 
-.card-level-image img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  display: block;
-  padding: 12px;
-  box-sizing: border-box;
-}
 
-.card-level-image img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .card-level-body {
   padding: 30px 36px;
@@ -1668,13 +1662,9 @@ button {
 
   .card-level-top { grid-template-columns: 1fr; }
   .card-level-image {
+    min-height: 180px;
     border-right: none;
     border-bottom: 0.5px solid var(--color-line);
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    min-height: 200px;
-    position: relative;
-    overflow: hidden;
   }
   .card-level-image img {
     padding: 0;
@@ -1984,44 +1974,3 @@ button {
   }
 }
 
-  .overview-blocks .sidebar-block {
-    width: auto !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    flex: 1 !important;
-  }
-
-  /* Card level top: side by side again */
-  .card-level-top {
-    grid-template-columns: 1fr 2fr !important;
-  }
-  .card-level-image {
-    border-right: 0.5px solid var(--color-line) !important;
-    border-bottom: none !important;
-    aspect-ratio: 16 / 9 !important;
-  }
-  .card-level-image img {
-    padding: 8px !important;
-    object-fit: contain !important;
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  /* Card body: full width text */
-  .card-level-body {
-    max-width: 100% !important;
-  }
-
-  /* Comparison: keep 16/9 */
-  .comparison-wrap .comparison {
-    max-width: 700px !important;
-  }
-
-  /* Page header: compact */
-  .page-header {
-    padding-top: 80px !important;
-    padding-bottom: 20px !important;
-  }
-}
